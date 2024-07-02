@@ -2,10 +2,8 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
-
 const prisma = new PrismaClient();
-
-const options: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -16,6 +14,7 @@ const options: NextAuthOptions = {
                     name: `${profile.given_name} ${profile.family_name}`,
                     email: profile.email,
                     image: profile.picture,
+                    
                 };
             },
         }),
@@ -25,23 +24,30 @@ const options: NextAuthOptions = {
         strategy: "jwt",
     },
     callbacks: {
-        async jwt({ token, user }) {
+        jwt: async ({ token, user }) => {
             if (user) {
                 token.id = user.id;
-                token.role = user.role; // Assuming user.role is defined
+                //@ts-ignore
+                token.role = user.role;
             }
             return token;
         },
-        async session({ session, token }) {
-            if (token) {
-                session.user = token;
+        session: async ({ session, token }) => {
+            if (session.user) {
+                //@ts-ignore
+                session.user.id = token.id
+                //@ts-ignore
+                session.user.role = token.role
+                session.user.image = token.picture
             }
             return session;
         },
         async redirect({ baseUrl }) {
-            return `${baseUrl}/`;
-        },
+            return `${baseUrl}/`
+          },
     },
 };
 
-export default (req, res) => NextAuth(req, res, options);
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
