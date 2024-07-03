@@ -2,6 +2,7 @@
 
 import { useFormState } from 'react-dom'
 import Image from "next/image";
+import { redirect } from 'next/navigation';
 import { AddMessage } from '../action/addMessage';
 const initialState = {
   success: false,
@@ -22,7 +23,7 @@ export default function Home() {
                   <input className="md:w-[500px] lg:w-[1000px] w-72 p-2" type="text" name="name" placeholder="ชื่อ-สกุล / Name" required/>
                 </div>
                 <div className="flex flex-col">
-                  <p>ระดับชั้น *</p>
+                  <p>ห้องเรียน *</p>
                   <select name="class" id="class" className="md:w-[500px] lg:w-[1000px] w-72 p-2" required>
                   <option value="" disabled selected>กรุณาเลือกห้องเรียน</option>
                   {numbers.map((number, index) => (
@@ -34,7 +35,7 @@ export default function Home() {
                   <p>เบอร์โทรศัพท์ *</p>
                   <input className="md:w-[500px] lg:w-[1000px] w-72  p-2" type="text" name="phoneNumber" placeholder="เบอร์โทรศัพท์ / Phone number" required/>
                 </div>
-                <button type="submit" className="flex gap-10 ">
+                <button onClick={()=>{redirect('/success')}} type="submit" className="flex gap-10 ">
                   <p className="p-2 bg-yellow-400 rounded-xl">ลงนามถวายพระพร</p>
                 </button>
             </div>
