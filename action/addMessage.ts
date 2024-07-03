@@ -18,6 +18,7 @@ export const AddMessage = async (prevState: any, formData: FormData) => {
             name,
             classroom,
             phonenumber,
+            //@ts-ignore
             gender,
             role
         },
