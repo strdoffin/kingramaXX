@@ -1,8 +1,6 @@
 'use client'
-
 import { useFormState } from 'react-dom'
 import Image from "next/image";
-import { redirect } from 'next/navigation';
 import { AddMessage } from '../action/addMessage';
 const initialState = {
   success: false,
@@ -26,18 +24,37 @@ export default function Home() {
                   <p>ห้องเรียน *</p>
                   <select name="class" id="class" className="md:w-[500px] lg:w-[1000px] w-72 p-2" required>
                   <option value="" disabled selected>กรุณาเลือกห้องเรียน</option>
-                  {numbers.map((number, index) => (
+                  <option value="none" >ไม่ระบุ</option>
+                  {numbers.map((number , index) => (
                     <option key={index}>{number}</option>
                   ))}
+                  </select>
+                </div>
+                <div className="flex flex-col">
+                  <p>เพศ *</p>
+                  <select name="gender" id="class" className="md:w-[500px] lg:w-[1000px] w-72 p-2" required>
+                    <option value="" disabled selected>กรุณาเลือกเพศ</option>
+                    <option value="male">ชาย</option>
+                    <option value="female">หญิง</option>
+                    <option value="none">ไม่ระบุ</option>
+                  </select>
+                </div>
+                <div className="flex flex-col">
+                  <p>อาชีพ *</p>
+                  <select name="role" id="class" className="md:w-[500px] lg:w-[1000px] w-72 p-2" required>
+                    <option value="" disabled selected>กรุณาเลือกเพศ</option>
+                    <option value="teacher">คุณครู</option>
+                    <option value="student">นักเรียน</option>
+                    <option value="etc">อื่นๆ</option>
                   </select>
                 </div>
                 <div className="flex flex-col">
                   <p>เบอร์โทรศัพท์ *</p>
                   <input className="md:w-[500px] lg:w-[1000px] w-72  p-2" type="text" name="phoneNumber" placeholder="เบอร์โทรศัพท์ / Phone number" required/>
                 </div>
-                <button onClick={()=>{redirect('/success')}} type="submit" className="flex gap-10 ">
-                  <p className="p-2 bg-yellow-400 rounded-xl">ลงนามถวายพระพร</p>
-                </button>
+                  <button type="submit" className="flex gap-10 ">
+                    <p className="p-2 bg-yellow-400 rounded-xl">ลงนามถวายพระพร</p>
+                  </button>
             </div>
           </form>
       </div>

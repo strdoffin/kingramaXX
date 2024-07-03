@@ -16,7 +16,9 @@ datasource db {
 
 model Message {
   id          Int    @id @default(autoincrement())
-  name        String
+  gender      String @default("none")
+  role        String @default("student")
+  name        String 
   classroom   String
   phonenumber String
 }
