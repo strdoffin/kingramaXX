@@ -2,6 +2,8 @@ import React from 'react'
 import Drug from '../components/Drug'
 import Image from 'next/image';
 import Link from 'next/link';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {faChevronRight, faChevronLeft  } from "@fortawesome/free-solid-svg-icons"
 export default function page() {
     const slides = [
         {
@@ -38,6 +40,7 @@ export default function page() {
       ];
   return (
     <div className='bg-fuchsia-700'>
+        <Link href={"/"} className='w-[50px] h-[50px] flex justify-center items-center text-4xl text-white text-center bg-yellow-400 rounded-full fixed top-5 left-5'><FontAwesomeIcon icon={faChevronLeft} /></Link>
         <nav className='text-5xl text-center py-2 text-yellow-300 font-bold'>นิทรรศการต้านยาเสพติดออนไลน์</nav>
         <Drug/>
         <div className='grid-cols-2 grid '>
@@ -48,6 +51,7 @@ export default function page() {
             ))}
         </div>
         <div className='text-white text-center'>Copyright © 2024 ม.6/3 (smte) กลุ่มที่ 2 . All rights reserved.</div>
+        
     </div>
   )
 }
