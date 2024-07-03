@@ -33,7 +33,7 @@ export default function Home() {
                 <div className="flex flex-col">
                   <p>เพศ *</p>
                   <select name="gender" id="class" className="md:w-[500px] lg:w-[1000px] w-72 p-2" required>
-                    <option value="" disabled selected>กรุณาเลือกเพศ</option>
+                    <option value="" disabled selected>กรุณาเลือกอาชีพ</option>
                     <option value="male">ชาย</option>
                     <option value="female">หญิง</option>
                     <option value="none">ไม่ระบุ</option>
