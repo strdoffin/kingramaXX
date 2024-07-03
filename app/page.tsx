@@ -2,6 +2,7 @@
 import { useFormState } from 'react-dom'
 import Image from "next/image";
 import { AddMessage } from '../action/addMessage';
+import Link from 'next/link';
 const initialState = {
   success: false,
   message: null,
@@ -54,10 +55,13 @@ export default function Home() {
                   <input className="md:w-[500px] lg:w-[1000px] w-72  p-2" type="text" name="phoneNumber" placeholder="เบอร์โทรศัพท์ / Phone number" required/>
                 </div>
                   <button type="submit" className="flex gap-10 ">
-                    <p className="p-2 bg-yellow-400 rounded-xl">ลงนามถวายพระพร</p>
+                    <p className="p-2 bg-yellow-400 rounded-xl ">ลงนามถวายพระพร</p>
                   </button>
+                <Link className="p-2 bg-orange-600 rounded-xl text-white" href={"/drug"}>รับชมนิทรรศการต้านยาเสพติดออนไลน์</Link>
             </div>
           </form>
+
+
       </div>
     </main>
   );
